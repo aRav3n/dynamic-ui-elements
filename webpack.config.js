@@ -1,5 +1,4 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   //  mode: 'development',
@@ -24,10 +23,4 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: "ToDo List",
-      favicon: "./src/images/favicon.png",
-    }),
-  ],
 };

@@ -2,6 +2,10 @@
 
 ### By Andy Ryan
 
+## Description
+
+This package adds functionality for a dropdown menu utilizing <ul> elements.
+
 ## Useage
 
 To successfully use this module you'll want to place all your menu items into a <ul> as <li> elements.

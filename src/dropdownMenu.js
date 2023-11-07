@@ -1,7 +1,11 @@
+import DownArrow from './images/down_arrow.svg';
+
 export default function createDropdownMenuFunctionality() {
   const dropdownMenus = document.querySelectorAll(".dropdown");
   const arrowSpan = document.createElement("span");
-  arrowSpan.innerHTML = "▼";
+  const downArrow = new Image();
+  downArrow.src = DownArrow;
+  arrowSpan.appendChild(downArrow);
   for (let i = 0; i < dropdownMenus.length; i++) {
     const dropdownMenu = dropdownMenus[i];
     dropdownMenu.insertBefore(arrowSpan, dropdownMenu.children[0]);

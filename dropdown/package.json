@@ -1,6 +1,6 @@
 {
   "name": "arav3n-dropdown",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Andy Ryan <andy.t.ryan88@gmail.com>",
   "description": "Dropdown menu functionality using a <ul>",
   "main": "index.js",

@@ -1,6 +1,6 @@
 # Dropdown Menu
 
-### By Andy Ryan
+By Andy Ryan
 
 ## Description
 

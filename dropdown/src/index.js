@@ -1,6 +1,6 @@
 import "./style.css";
 import dropDown from "./dropdownMenu.js";
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   dropDown();
 });

@@ -1,7 +1,8 @@
 {
   "name": "dynamic-ui-elements",
   "version": "1.0.0",
-  "description": "",
+  "author": "Andy Ryan <andy.t.ryan88@gmail.com>",
+  "description": "Dropdown menu functionality using a <ul>",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,7 +14,6 @@
     "url": "git+https://github.com/aRav3n/dynamic-ui-elements.git"
   },
   "keywords": [],
-  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/aRav3n/dynamic-ui-elements/issues"

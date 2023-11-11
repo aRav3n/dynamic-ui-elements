@@ -1,0 +1,16 @@
+{
+  "name": "arav3n-mobile-menu",
+  "version": "1.0.0",
+  "author": "Andy Ryan <andy.t.ryan88@gmail.com>",
+  "description": "This is a mobile navigation menu utilizing a <ul>.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  }
+}

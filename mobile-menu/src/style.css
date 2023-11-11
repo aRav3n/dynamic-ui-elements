@@ -1,14 +1,14 @@
 :root {
   --mobile-menu-icon-size: 2rem;
   --mobile-menu-radius: calc(var(--mobile-menu-icon-size) / 2);
-  --mobile-menu-text-size: calc(var(--mobile-menu-icon-size) * 0.6);
+  --mobile-menu-text-size: 1rem;
 }
 
 * {
   font: inherit;
 }
 
-#mobile-menu {
+#mobileMenu {
   bottom: 5vmin;
   display: flex;
   flex-direction: column;
@@ -20,32 +20,42 @@
   position: fixed;
 }
 
-#mobile-menu a {
+#mobileMenu a {
   align-items: center;
-  background-color: #bfbfbf75;
+  background-color: #bfbfbf;
   border-radius: var(--mobile-menu-radius);
   color: #373737;
   display: flex;
   text-decoration: none;
 }
 
-#mobile-menu a:hover {
+#mobileMenu a:hover {
   gap: calc(var(--mobile-menu-text-size) / 2);
   padding-right: var(--mobile-menu-text-size);
 }
 
-#mobile-menu img {
+#mobileMenu img {
   background-color: aquamarine;
   border-radius: 50%;
   height: var(--mobile-menu-icon-size);
   width: auto;
 }
 
-#mobile-menu li {
+#mobileMenu li {
   display: flex;
   width: fit-content;
 }
 
-#mobile-menu li:hover {
+#mobileMenu li:hover {
   font-size: var(--mobile-menu-text-size);
+}
+
+#mobileMenuToggle {
+  background-color: #ff6600ff;
+  border-radius: 50%;
+  bottom: 5vmin;
+  height: var(--mobile-menu-icon-size);
+  position: fixed;
+  right: 5vmin;
+  width: auto;
 }

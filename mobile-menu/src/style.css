@@ -1,6 +1,7 @@
 :root {
-  --mobile-menu-icon-size: 2rem;
+  --mobile-menu-icon-size: 2.5rem;
   --mobile-menu-radius: calc(var(--mobile-menu-icon-size) / 2);
+  --mobile-menu-spacing: 10vmin;
   --mobile-menu-text-size: 1rem;
 }
 
@@ -9,13 +10,14 @@
 }
 
 #mobileMenu {
-  bottom: 5vmin;
+  bottom: var(--mobile-menu-spacing);
   display: flex;
   flex-direction: column;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 0;
   height: 40vh;
   justify-content: space-between;
-  left: 5vmin;
+  left: var(--mobile-menu-spacing);
   padding: 0;
   position: fixed;
 }
@@ -24,8 +26,9 @@
   align-items: center;
   background-color: #bfbfbf;
   border-radius: var(--mobile-menu-radius);
-  color: #373737;
+  color: black;
   display: flex;
+  font-weight: bold;
   text-decoration: none;
 }
 
@@ -53,9 +56,9 @@
 #mobileMenuToggle {
   background-color: #ff6600ff;
   border-radius: 50%;
-  bottom: 5vmin;
+  bottom: var(--mobile-menu-spacing);
   height: var(--mobile-menu-icon-size);
   position: fixed;
-  right: 5vmin;
+  right: var(--mobile-menu-spacing);
   width: auto;
 }

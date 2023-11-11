@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/aRav3n/dynamic-ui-elements/issues"
   },
-  "homepage": "https://github.com/aRav3n/dynamic-ui-elements#readme",
+  "homepage": "https://github.com/aRav3n/dynamic-ui-elements/blob/main/dropdown/README.md",
   "devDependencies": {
     "css-loader": "^6.8.1",
     "eslint": "^8.53.0",

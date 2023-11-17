@@ -14,6 +14,9 @@ Put the function inside of an event listener for DOM content load. The function 
 
 1. The ID of the aforementioned **ul**
 2. The hex color you want as a background for the individual menu item icons
-  * Use a clear color if you don't want a background
+
+- Use a clear color if you don't want a background
+
 3. The hex color you want as a background for the toggle icon that will open the menu
-  * Use a clear color if you don't want a background
+
+- Use a clear color if you don't want a background

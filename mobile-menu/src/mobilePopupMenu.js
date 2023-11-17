@@ -91,5 +91,6 @@ export default function mobilePopupMenu(
   });
   menuUl.addEventListener("click", () => {
     toggleInvisibility(plusIcon);
+    toggleInvisibility(menuUl);
   });
 }

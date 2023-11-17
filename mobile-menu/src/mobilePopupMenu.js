@@ -8,11 +8,15 @@ const toggleInvisibility = function (object) {
   }
 };
 
-export default function mobilePopupMenu(ulIdWithHash, popupButtonHexColorWithHash, plusIconHexColorWithHash) {
+export default function mobilePopupMenu(
+  ulIdWithHash,
+  popupButtonHexColorWithHash,
+  plusIconHexColorWithHash
+) {
   const plusIcon = new Image();
   const body = document.querySelector("body");
   const head = document.querySelector("head");
-  const style = document.createElement('style');
+  const style = document.createElement("style");
   const menuUl = document.querySelector(ulIdWithHash);
 
   style.innerHTML = `:root {
@@ -77,10 +81,15 @@ export default function mobilePopupMenu(ulIdWithHash, popupButtonHexColorWithHas
   }`;
   head.appendChild(style);
 
+  menuUl.style.display = "none";
   plusIcon.src = PlusIcon;
   plusIcon.setAttribute("id", "mobileMenuToggle");
   body.appendChild(plusIcon);
   plusIcon.addEventListener("click", () => {
+    toggleInvisibility(plusIcon);
+    toggleInvisibility(menuUl);
+  });
+  menuUl.addEventListener("click", () => {
     toggleInvisibility(plusIcon);
   });
 }

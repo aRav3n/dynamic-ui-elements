@@ -1,6 +1,6 @@
 {
   "name": "arav3n-mobile-menu",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Andy Ryan <andy.t.ryan88@gmail.com>",
   "description": "This is a mobile navigation menu utilizing a ul.",
   "main": "index.js",

@@ -1,19 +1,30 @@
 {
-  "name": "image-slider",
+  "name": "arav3n-image-slider",
   "version": "1.0.0",
+  "author": "Andy Ryan <andy.t.ryan88@gmail.com>",
+  "description": "Image slider that uses a <ul>",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aRav3n/dynamic-ui-elements/tree/main/image-slider"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "watch": "webpack --watch"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
+    "css-loader": "^6.8.1",
     "eslint": "^8.54.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-import": "^2.29.0",
-    "prettier": "3.1.0"
+    "prettier": "3.1.0",
+    "style-loader": "^3.3.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
   },
   "dependencies": {
     "acorn": "^8.11.2",
@@ -102,6 +113,5 @@
     "which": "^2.0.2",
     "wrappy": "^1.0.2",
     "yocto-queue": "^0.1.0"
-  },
-  "description": ""
+  }
 }

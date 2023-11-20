@@ -13,45 +13,66 @@
   width: 90vw;
 }
 
+#imageSlider div {
+  position: relative;
+}
+
 #imageSlider img {
   aspect-ratio: 1 / 1;
   display: none;
   flex: 1 1 80vw;
   height: auto;
   object-fit: cover;
+  position: relative;
 }
 
-#imageSlider #imgMain {
+#imageSlider #imgMain img {
   display: block;
   height: auto;
   width: max(45vw, 200px);
 
 }
 
-#imageSlider #imgNext,
-#imageSlider #imgPrevious {
+#imageSlider #imgNext img,
+#imageSlider #imgPrevious img {
   display: block;
-  filter: saturate(47%) opacity(68%) contrast(78%);
-  -webkit-filter: saturate(47%) opacity(68%) contrast(78%);
-  -moz-filter: saturate(47%) opacity(68%) contrast(78%);
   height: auto;
+  opacity: 40%;
   position: relative;
   width: max(20vw, 100px);
   z-index: 1;
 }
 
-#imgNext + span::before {
+#imageSlider #imgNext:hover img,
+#imageSlider #imgPrevious:hover img {
+  opacity: 70%;
+}
+
+#imageSlider span {
+  left: 40%;
+  position: relative;
+}
+
+#imgNext span::before {
   content: url(../src/images/arrow_forward.svg);
 }
 
-#imgPrevious + span::before {
+#imgPrevious span::before {
   content: url(../src/images/arrow_back.svg);
 }
 
-#imgNext + span::before,
-#imgPrevious + span::before {
+#imgNext span::before,
+#imgPrevious span::before {
+  bottom: 250%;
   height: auto;
+  left: 45%;
   position: absolute;
   width: max(5vw, 20px);
   z-index: 2;
+}
+
+#imgNext:hover span::before,
+#imgPrevious:hover span::before {
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
 }

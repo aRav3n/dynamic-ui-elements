@@ -106,6 +106,24 @@ export const makeImageSlider = function makeImageSliderFromDiv() {
   let imgMain = 0;
   let imgNext = 1;
 
+  const buttonBackListener = function listenForButtonBackClick() {
+    console.log("buttonBackListener called");
+    const buttonBack = document.querySelector("#imgPrevious");
+    buttonBack.addEventListener("click", () => {
+      updateNumbers(-1);
+      updateIds();
+    });
+  };
+
+  const buttonNextListener = function listenForButtonNextClick() {
+    console.log("buttonNextListener called");
+    const buttonNext = document.querySelector("#imgNext");
+    buttonNext.addEventListener("click", () => {
+      updateNumbers(1);
+      updateIds();
+    });
+  };
+
   const updateNumbers = function updatePreviousNextAndMain(number) {
     imgMain += number;
     imgPrevious = imgMain - 1;
@@ -125,35 +143,15 @@ export const makeImageSlider = function makeImageSliderFromDiv() {
       const currentDiv = imageSlider.children[i];
       if (i === imgPrevious) {
         currentDiv.setAttribute("id", "imgPrevious");
+        buttonBackListener();
       } else if (i === imgMain) {
         currentDiv.setAttribute("id", "imgMain");
       } else if (i === imgNext) {
         currentDiv.setAttribute("id", "imgNext");
+        buttonNextListener();
       } else {
         currentDiv.setAttribute("id", "");
       }
-    }
-  };
-
-  const changeIds = function changeDivIdsOnClick() {
-    console.log({ imgPrevious, imgMain, imgNext });
-    const buttonBack = document.querySelector("#imgPrevious");
-    const buttonNext = document.querySelector("#imgNext");
-
-    if (buttonBack) {
-      buttonBack.addEventListener("click", () => {
-        updateNumbers(-1);
-        updateIds();
-        changeIds();
-      });
-    }
-
-    if (buttonNext) {
-      buttonNext.addEventListener("click", () => {
-        updateNumbers(1);
-        updateIds();
-        changeIds();
-      });
     }
   };
 
@@ -175,7 +173,6 @@ export const makeImageSlider = function makeImageSliderFromDiv() {
   };
   updateHtml();
   updateIds();
-  changeIds();
 };
 
 document.addEventListener("DOMContentLoaded", () => {

@@ -82,63 +82,81 @@ const styleSlider = function injectCssWithJS() {
   head.appendChild(style);
 };
 
-export const imageSlider = function imageSliderFromDiv() {
+export const makeImageSlider = function makeImageSliderFromDiv() {
+  const imageArray = [];
   const imageSlider = document.querySelector("#imageSlider");
+  const imageCount = imageSlider.childElementCount;
   const imageSliderChildren = [];
 
   let imgMain = 0;
   const imgPrevious = imgMain - 1;
   const imgNext = imgMain + 1;
 
+  const buildImageArray = function pupulateImageArrayFromImagesInHtml() {
+    for (let i = 0; i < imageCount; i++) {
+      const currentImg = imageSlider.children[i];
+      imageArray.push(currentImg);
+    }
+    imageSlider.innerHTML = "";
+  };
+
   const updateIds = function updateDivIds() {
-    for (let i = 0; i < imageSliderChildren.length; i++) {
-      const div = imageSliderChildren[i];
+    for (let i = 0; i < imageCount; i++) {
+      const currentDiv = imageSlider.children[i];
       if (i === imgPrevious) {
-        div.setAttribute("id", "imgPrevious");
+        currentDiv.setAttribute("id", "imgPrevious");
       } else if (i === imgMain) {
-        div.setAttribute("id", "imgMain");
+        currentDiv.setAttribute("id", "imgMain");
       } else if (i === imgNext) {
-        div.setAttribute("id", "imgNext");
+        currentDiv.setAttribute("id", "imgNext");
       } else {
-        div.setAttribute("id", "");
+        currentDiv.setAttribute("id", "");
       }
     }
   };
-
-  for (let i = 0; i < imageSlider.childElementCount; i++) {
-    console.log(imageSlider.childElementCount);
-    const child = imageSlider.children[i];
-    const div = document.createElement("div");
-    const span = document.createElement("span");
-    div.appendChild(child);
-    div.appendChild(span);
-    imageSliderChildren.push(div);
-  }
-  imageSlider.innerHTML = "";
-  updateIds();
-  for (const child of imageSliderChildren) {
-    imageSlider.appendChild(child);
-  }
 
   const changeIds = function changeDivIdsOnClick() {
     const buttonBack = document.querySelector("#imgPrevious");
     const buttonNext = document.querySelector("#imgNext");
 
-    buttonBack.addEventListener("click", () => {
-      imgMain--;
-      updateIds();
-      changeIds();
-    });
+    if (buttonBack) {
+      buttonBack.addEventListener("click", () => {
+        imgMain--;
+        updateIds();
+        changeIds();
+      });
+    }
 
-    buttonNext.addEventListener("click", () => {
-      imgMain++;
-      updateIds();
-      changeIds();
-    });
+    if (buttonNext) {
+      buttonNext.addEventListener("click", () => {
+        imgMain++;
+        updateIds();
+        changeIds();
+      });
+    }
   };
+
+  const updateHtml = function putImgsIntoDivsAndAddSpans() {
+    buildImageArray();
+    for (let i = 0; i < imageCount; i++) {
+      const currentImg = imageArray[i];
+      const currentDiv = document.createElement("div");
+      const currentSpan = document.createElement("span");
+      currentDiv.appendChild(currentImg);
+      currentDiv.appendChild(currentSpan);
+      imageSliderChildren.push(currentDiv);
+    }
+    for (let i = 0; i < imageCount; i++) {
+      const child = imageSliderChildren[i];
+      imageSlider.appendChild(child);
+    }
+  };
+  updateHtml();
+  updateIds();
+  changeIds();
 };
 
 document.addEventListener("DOMContentLoaded", () => {
   styleSlider();
-  imageSlider();
+  makeImageSlider();
 });

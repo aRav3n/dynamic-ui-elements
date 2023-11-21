@@ -6,44 +6,58 @@ const styleSlider = function injectCssWithJS() {
     padding: 0;
   }
   
+  body {
+    display: grid;
+    justify-content: center;
+  }
+  
   #imageSlider {
     align-items: center;
-    display: flex;
+    display: grid;
     gap: 1vw;
-    height: auto;
-    margin: 5vh auto;
+    grid-template-columns: 22.5vw 45vw 22.5vw;
+    grid-template-rows: 45vw;
+    margin: 5vh 0;
     padding: 0;
-    width: 90vw;
   }
   
   #imageSlider div {
+    justify-content: center;
     position: relative;
   }
   
   #imageSlider img {
     aspect-ratio: 1 / 1;
-    display: none;
-    flex: 1 1 80vw;
+    flex: 1 1 22vw;
     height: auto;
+    max-width: 100%;
     object-fit: cover;
     position: relative;
+    width: auto;
+    z-index: 1;
   }
   
-  #imageSlider #imgMain img {
-    display: block;
-    height: auto;
-    width: max(45vw, 200px);
-  
+  #imageSlider div {
+    display: none;
   }
   
+  #imageSlider #imgMain {
+    display: flex;
+    grid-column-start: 2;
+  }
+  
+  #imageSlider #imgNext {
+    display: flex;
+    grid-column-start: 3;
+  }
+  
+  #imageSlider #imgPrevious {
+    display: flex;
+    grid-column-start: 1;
+  }
   #imageSlider #imgNext img,
   #imageSlider #imgPrevious img {
-    display: block;
-    height: auto;
     opacity: 40%;
-    position: relative;
-    width: max(20vw, 100px);
-    z-index: 1;
   }
   
   #imageSlider #imgNext:hover img,
@@ -53,7 +67,8 @@ const styleSlider = function injectCssWithJS() {
   
   #imageSlider span {
     left: 40%;
-    position: relative;
+    position: absolute;
+    top: 30%;
   }
   
   #imgNext span::before {
@@ -66,7 +81,6 @@ const styleSlider = function injectCssWithJS() {
   
   #imgNext span::before,
   #imgPrevious span::before {
-    bottom: 250%;
     height: auto;
     left: 45%;
     position: absolute;
@@ -88,9 +102,15 @@ export const makeImageSlider = function makeImageSliderFromDiv() {
   const imageCount = imageSlider.childElementCount;
   const imageSliderChildren = [];
 
+  let imgPrevious = -1;
   let imgMain = 0;
-  const imgPrevious = imgMain - 1;
-  const imgNext = imgMain + 1;
+  let imgNext = 1;
+
+  const updateNumbers = function updatePreviousNextAndMain(number) {
+    imgMain += number;
+    imgPrevious = imgMain - 1;
+    imgNext = imgMain + 1;
+  };
 
   const buildImageArray = function pupulateImageArrayFromImagesInHtml() {
     for (let i = 0; i < imageCount; i++) {
@@ -116,12 +136,13 @@ export const makeImageSlider = function makeImageSliderFromDiv() {
   };
 
   const changeIds = function changeDivIdsOnClick() {
+    console.log({ imgPrevious, imgMain, imgNext });
     const buttonBack = document.querySelector("#imgPrevious");
     const buttonNext = document.querySelector("#imgNext");
 
     if (buttonBack) {
       buttonBack.addEventListener("click", () => {
-        imgMain--;
+        updateNumbers(-1);
         updateIds();
         changeIds();
       });
@@ -129,7 +150,7 @@ export const makeImageSlider = function makeImageSliderFromDiv() {
 
     if (buttonNext) {
       buttonNext.addEventListener("click", () => {
-        imgMain++;
+        updateNumbers(1);
         updateIds();
         changeIds();
       });
@@ -137,6 +158,7 @@ export const makeImageSlider = function makeImageSliderFromDiv() {
   };
 
   const updateHtml = function putImgsIntoDivsAndAddSpans() {
+    styleSlider();
     buildImageArray();
     for (let i = 0; i < imageCount; i++) {
       const currentImg = imageArray[i];
@@ -157,6 +179,5 @@ export const makeImageSlider = function makeImageSliderFromDiv() {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  styleSlider();
   makeImageSlider();
 });

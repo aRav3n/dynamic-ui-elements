@@ -123,10 +123,10 @@ export const makeImageSlider = function makeImageSliderFromDiv() {
     mainImageDiv.className = "imgMain";
     if (imgNext) {
       imgNext.className = "imgNext";
-    };
+    }
     if (imgPrevious) {
       imgPrevious.className = "imgPrevious";
-    };
+    }
   };
 
   const updateHtml = function putImgsIntoDivsAndAddSpans() {
@@ -142,12 +142,11 @@ export const makeImageSlider = function makeImageSliderFromDiv() {
     }
     for (let i = 0; i < imageCount; i++) {
       const child = imageSliderChildren[i];
-      child.addEventListener('click', () => {
+      child.addEventListener("click", () => {
         setMain(child);
       });
       imageSlider.appendChild(child);
-    };
-
+    }
   };
   updateHtml();
   clearClasses();

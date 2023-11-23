@@ -41,27 +41,27 @@ const styleSlider = function injectCssWithJS() {
     display: none;
   }
   
-  #imageSlider #imgMain {
+  #imageSlider .imgMain {
     display: flex;
     grid-column-start: 2;
   }
   
-  #imageSlider #imgNext {
+  #imageSlider .imgNext {
     display: flex;
     grid-column-start: 3;
   }
   
-  #imageSlider #imgPrevious {
+  #imageSlider .imgPrevious {
     display: flex;
     grid-column-start: 1;
   }
-  #imageSlider #imgNext img,
-  #imageSlider #imgPrevious img {
+  #imageSlider .imgNext img,
+  #imageSlider .imgPrevious img {
     opacity: 40%;
   }
   
-  #imageSlider #imgNext:hover img,
-  #imageSlider #imgPrevious:hover img {
+  #imageSlider .imgNext:hover img,
+  #imageSlider .imgPrevious:hover img {
     opacity: 70%;
   }
   
@@ -71,16 +71,16 @@ const styleSlider = function injectCssWithJS() {
     top: 30%;
   }
   
-  #imgNext span::before {
+  .imgNext span::before {
     content: url(../src/images/arrow_forward.svg);
   }
   
-  #imgPrevious span::before {
+  .imgPrevious span::before {
     content: url(../src/images/arrow_back.svg);
   }
   
-  #imgNext span::before,
-  #imgPrevious span::before {
+  .imgNext span::before,
+  .imgPrevious span::before {
     height: auto;
     left: 45%;
     position: absolute;
@@ -88,8 +88,8 @@ const styleSlider = function injectCssWithJS() {
     z-index: 2;
   }
   
-  #imgNext:hover span::before,
-  #imgPrevious:hover span::before {
+  .imgNext:hover span::before,
+  .imgPrevious:hover span::before {
     -webkit-filter: invert(100%);
     filter: invert(100%);
   }`;
@@ -102,35 +102,7 @@ export const makeImageSlider = function makeImageSliderFromDiv() {
   const imageCount = imageSlider.childElementCount;
   const imageSliderChildren = [];
 
-  let imgPrevious = -1;
-  let imgMain = 0;
-  let imgNext = 1;
-
-  const buttonBackListener = function listenForButtonBackClick() {
-    console.log("buttonBackListener called");
-    const buttonBack = document.querySelector("#imgPrevious");
-    buttonBack.addEventListener("click", () => {
-      updateNumbers(-1);
-      updateIds();
-    });
-  };
-
-  const buttonNextListener = function listenForButtonNextClick() {
-    console.log("buttonNextListener called");
-    const buttonNext = document.querySelector("#imgNext");
-    buttonNext.addEventListener("click", () => {
-      updateNumbers(1);
-      updateIds();
-    });
-  };
-
-  const updateNumbers = function updatePreviousNextAndMain(number) {
-    imgMain += number;
-    imgPrevious = imgMain - 1;
-    imgNext = imgMain + 1;
-  };
-
-  const buildImageArray = function pupulateImageArrayFromImagesInHtml() {
+  const buildImageArray = function populateImageArrayFromImagesInHtml() {
     for (let i = 0; i < imageCount; i++) {
       const currentImg = imageSlider.children[i];
       imageArray.push(currentImg);
@@ -138,21 +110,23 @@ export const makeImageSlider = function makeImageSliderFromDiv() {
     imageSlider.innerHTML = "";
   };
 
-  const updateIds = function updateDivIds() {
+  const clearClasses = function clearDivClasses() {
     for (let i = 0; i < imageCount; i++) {
-      const currentDiv = imageSlider.children[i];
-      if (i === imgPrevious) {
-        currentDiv.setAttribute("id", "imgPrevious");
-        buttonBackListener();
-      } else if (i === imgMain) {
-        currentDiv.setAttribute("id", "imgMain");
-      } else if (i === imgNext) {
-        currentDiv.setAttribute("id", "imgNext");
-        buttonNextListener();
-      } else {
-        currentDiv.setAttribute("id", "");
-      }
+      imageSlider.children[i].className = "";
     }
+  };
+
+  const setMain = function setThisDivAsMainImage(mainImageDiv) {
+    const imgNext = mainImageDiv.nextSibling;
+    const imgPrevious = mainImageDiv.previousSibling;
+    clearClasses();
+    mainImageDiv.className = "imgMain";
+    if (imgNext) {
+      imgNext.className = "imgNext";
+    };
+    if (imgPrevious) {
+      imgPrevious.className = "imgPrevious";
+    };
   };
 
   const updateHtml = function putImgsIntoDivsAndAddSpans() {
@@ -168,11 +142,16 @@ export const makeImageSlider = function makeImageSliderFromDiv() {
     }
     for (let i = 0; i < imageCount; i++) {
       const child = imageSliderChildren[i];
+      child.addEventListener('click', () => {
+        setMain(child);
+      });
       imageSlider.appendChild(child);
-    }
+    };
+
   };
   updateHtml();
-  updateIds();
+  clearClasses();
+  setMain(imageSlider.children[0]);
 };
 
 document.addEventListener("DOMContentLoaded", () => {

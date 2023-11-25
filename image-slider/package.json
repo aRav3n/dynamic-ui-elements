@@ -1,8 +1,8 @@
 {
   "name": "arav3n-image-slider",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Andy Ryan <andy.t.ryan88@gmail.com>",
-  "description": "Image slider that uses a <ul>",
+  "description": "Image slider",
   "main": "index.js",
   "repository": {
     "type": "git",
